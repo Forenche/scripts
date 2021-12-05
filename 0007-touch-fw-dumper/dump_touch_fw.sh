@@ -27,11 +27,12 @@ if [[ $3 != '' && $3 == 'k' ]]; then
 	zip -ur "$ZIPNAME" firmware.xxd kernel
 fi
 
-rm ./*.bin ./*.ihex info.txt dtb ramdisk boot firmware.xxd kernel "${ROM_NAME}.zip"
+rm ./*.bin ./*.ihex info.txt boot firmware.xxd
 
 if [[ $2 != '' && $2 == 'u' ]]; then
 	UPLOAD=$(curl -s -F f[]=@"$ZIPNAME" "https://oshi.at" | grep DL | sed 's/DL: //g')
 	echo -e "$UPLOAD\n" >> ../links.txt
 fi
 
-mv "$ZIPNAME" ../
+mkdir extracted-fw
+mv "$ZIPNAME" extracted-fw/
