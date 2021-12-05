@@ -27,7 +27,7 @@ if [[ $3 != '' && $3 == 'k' ]]; then
 	zip -ur "$ZIPNAME" firmware.xxd kernel
 fi
 
-rm ./*.bin ./*.ihex info.txt boot firmware.xxd
+rm ./*.ihex info.txt firmware.xxd
 
 if [[ $2 != '' && $2 == 'u' ]]; then
 	UPLOAD=$(curl -s -F f[]=@"$ZIPNAME" "https://oshi.at" | grep DL | sed 's/DL: //g')
